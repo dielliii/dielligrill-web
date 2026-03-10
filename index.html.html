@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="sq" style="scroll-behavior: smooth;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dielli Grill | Shija e Vërtetë e Zgarës</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+  :root {
+    --gold: #b38144; 
+    --dark: #003638; 
+    --bg-page: #fffdfa; 
+    --bg-card: #f6f3eb; 
+    --text-main: #4a4744; 
+    --dots: #e0dcd3; 
+    --wolt-blue: #00A3A9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Poppins', sans-serif; color: var(--text-main); line-height: 1.6; background-color: var(--bg-page); }
+  
+  h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--dark); }
+  
+  .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+  
+  .btn {
+    display: inline-block;
+    padding: 14px 35px;
+    background-color: var(--gold); 
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 15px rgba(179, 129, 68, 0.3);
+  }
+  .btn:hover { background-color: #966a36; transform: translateY(-2px); }
+
+  @keyframes fadeInSlide {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .floating-logo {
+    position: fixed;
+    top: 15px;
+    left: 25px;
+    z-index: 10005; 
+    width: 90px; 
+    height: auto;
+    transition: transform 0.3s ease; 
+  }
+  .floating-logo img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1)); 
+  }
+  .floating-logo:hover {
+    transform: scale(1.12); 
+  }
+
+  .hero {
+    /* Ke parasysh ta ndryshosh kete me 'sfondi.jpg' siç diskutuam */
+    background: linear-gradient(rgba(0, 54, 56, 0.75), rgba(0, 54, 56, 0.85)), url('https://imageproxy.wolt.com/assets/6810a2bb9d7a5b1c140033a7');
+    background-size: cover;
+    background-position: center;
+    height: 90vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .hero-content { animation: fadeInSlide 1.5s ease-out forwards; }
+  .hero-content h2 { font-size: 1.1rem; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; font-family: 'Poppins', sans-serif;}
+  
+  .hero-main-logo {
+    display: block;
+    max-width: 400px; 
+    width: 80%;
+    height: auto;
+    margin: 0 auto 25px auto;
+    filter: brightness(0) invert(1); 
+  }
+
+  .hero-content p { font-size: 1.1rem; margin-bottom: 20px; font-style: italic; color: #eee; font-family: 'Playfair Display', serif;}
+  
+  .hero-socials { margin-bottom: 35px; }
+  .hero-socials a { color: #fff; font-size: 1.5rem; margin: 0 12px; transition: color 0.3s; }
+  .hero-socials a:hover { color: var(--gold); }
+
+  .nav-wrapper {
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 0;
+    background: var(--bg-page);
+    z-index: 9999;
+    border-bottom: 1px solid #eaeaea;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    padding: 15px 0 10px;
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+  
+  .category-nav { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; text-align: center; }
+  .category-nav::-webkit-scrollbar { display: none; } 
+  .category-nav-inner { display: flex; justify-content: center; align-items: center; width: max-content; margin: 0 auto; padding: 0 20px 10px; }
+  .category-nav a { color: var(--dark); text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; transition: color 0.3s; }
+  .category-nav a:hover { color: var(--gold); }
+  .nav-separator { color: #ccc; margin: 0 12px; font-weight: 300; }
+
+  .menu-wrapper { padding: 60px 0; }
+  .menu-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+  @media (min-width: 900px) { .menu-grid { grid-template-columns: repeat(2, 1fr); align-items: start; } }
+
+  .menu-card { background-color: var(--bg-card); border-radius: 8px; padding: 40px; scroll-margin-top: 140px; height: 100%; }
+  .card-header { border-bottom: 1px solid #e8e3d5; margin-bottom: 25px; padding-bottom: 15px; }
+  .category-title { font-size: 2.2rem; color: var(--dark); border-left: 5px solid var(--gold); padding-left: 15px; line-height: 1.1; }
+
+  .menu-list-item { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 18px; }
+  
+  /* Përshtatur pak për të mbajtur ikonën e fotos */
+  .item-name { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: 1.05rem; background: var(--bg-card); padding-right: 10px; z-index: 1; color: var(--dark); }
+  .item-dots { flex-grow: 1; border-bottom: 2px dotted var(--dots); position: relative; top: -7px; margin: 0 5px; z-index: 0; }
+  .item-price { font-weight: 600; font-size: 1.05rem; color: var(--gold); background: var(--bg-card); padding-left: 10px; z-index: 1; }
+  
+  .sub-category { font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--dark); margin: 30px 0 15px; border-bottom: 1px solid #e8e3d5; padding-bottom: 5px; }
+
+  .pizza-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-family: 'Poppins', sans-serif; }
+  .pizza-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dotted var(--dots); padding: 15px 0; }
+  .pizza-table-header { border-bottom: 1px solid #e8e3d5; margin-bottom: 10px; padding-bottom: 15px; }
+  .pizza-cell { flex: 1; text-align: center; }
+  .cell-name { display: flex; align-items: center; gap: 8px; text-align: left; flex: 2; color: var(--dark); font-weight: 500; font-size: 1.05rem; }
+  .cell-price { font-weight: 600; color: var(--gold); font-size: 1.05rem; }
+  .cell-header-price { color: var(--dark); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; }
+
+  /* --- STILI I IKONES SE FOTOS --- */
+  .photo-icon {
+    color: var(--gold);
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+  .photo-icon:hover {
+    transform: scale(1.2);
+    color: var(--dark);
+  }
+
+  /* --- MODALI (DRITARJA POP-UP E FOTOS) --- */
+  .modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 54, 56, 0.9); /* Sfondi i gjelber i thelle transparent */
+    z-index: 100000;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: all 0.3s ease;
+  }
+  .modal-overlay.active { opacity: 1; visibility: visible; }
+  
+  .modal-content {
+    position: relative; max-width: 90%; max-height: 80vh;
+    border-radius: 12px; overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    transform: scale(0.9); transition: all 0.3s ease;
+    background: var(--bg-card);
+  }
+  .modal-overlay.active .modal-content { transform: scale(1); }
+  
+  .modal-content img { 
+    width: 100%; max-width: 600px; height: auto; max-height: 70vh; 
+    object-fit: cover; display: block; 
+  }
+  
+  .close-modal {
+    position: absolute; top: 15px; right: 15px;
+    background: var(--gold); color: #fff;
+    width: 35px; height: 35px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 1.2rem; border: none; z-index: 2;
+    transition: all 0.3s ease;
+  }
+  .close-modal:hover { background: #fff; color: var(--gold); transform: rotate(90deg); }
+
+
+  .wolt-floating-btn {
+    position: fixed; bottom: 25px; right: 25px; background-color: var(--wolt-blue); color: #fff;
+    padding: 15px 25px; border-radius: 50px; display: flex; align-items: center; justify-content: center; gap: 10px;
+    text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(0, 163, 169, 0.4); z-index: 10000; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px;
+  }
+  .wolt-floating-btn:hover { background-color: #008f94; transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0, 163, 169, 0.5); }
+  .wolt-floating-btn i { font-size: 1.2rem; }
+
+  .map-section { padding: 40px 0 60px; background-color: var(--bg-page); }
+  .map-embed { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,54,56,0.1); }
+  .map-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+  .footer { background-color: var(--dark); color: #f9f9f9; padding: 60px 0 80px; text-align: center; }
+  .social-icons a { color: var(--gold); font-size: 1.5rem; margin: 0 15px; transition: color 0.3s; }
+  .social-icons a:hover { color: #fff; }
+
+  @media (max-width: 768px) { 
+    .floating-logo { top: 10px; left: 15px; width: 65px; } 
+    .hero-main-logo { max-width: 250px; } 
+    .menu-card { padding: 30px 20px; } 
+    .category-title { font-size: 1.8rem; }
+    .item-name { font-size: 0.95rem; }
+    .item-price { font-size: 0.95rem; }
+    .category-nav-inner { justify-content: flex-start; } 
+    .wolt-floating-btn { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 0.8rem; }
+    .cell-name { font-size: 0.95rem; }
+    .cell-price { font-size: 0.95rem; }
+    .cell-header-price { font-size: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="floating-logo">
+      <img src="DielliGrill1.png" alt="Logo Dielli Grill" onerror="this.style.display='none'">
+  </div>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Tradita që nga 1991</h2>
+      <img src="DielliGrill1.png" alt="Dielli Grill Logo" class="hero-main-logo" onerror="this.style.display='none'">
+      <p>Eksperienca e vërtetë e shijes</p>
+      <div class="hero-socials">
+          <a href="https://facebook.com/dielligrill" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com/dielli.grill" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+      <a href="#menu-start" class="btn">Shiko Menunë</a>
+    </div>
+  </section>
+
+  <div class="nav-wrapper" id="menu-start">
+    <div class="nav-brand">
+        Dielli Grill 
+        <span style="font-weight:300; color:#ddd; margin: 0 10px;">|</span> 
+        <span style="font-size:0.9rem; font-family:'Poppins', sans-serif; font-weight:400; color:var(--text-main); letter-spacing:1px; text-transform:uppercase;">Menuja</span>
+    </div>
+    <nav class="category-nav">
+      <div class="category-nav-inner">
+        <a href="#mengjesi">Mëngjesi</a> <span class="nav-separator">|</span>
+        <a href="#sendvice">Sanduiçë</a> <span class="nav-separator">|</span>
+        <a href="#pogaqe">Pogaçe</a> <span class="nav-separator">|</span>
+        <a href="#samun">Samun</a> <span class="nav-separator">|</span>
+        <a href="#pide">Pide</a> <span class="nav-separator">|</span>
+        <a href="#pica">Pica</a> <span class="nav-separator">|</span>
+        <a href="#pasta">Pasta</a> <span class="nav-separator">|</span>
+        <a href="#sallata">Sallata</a> <span class="nav-separator">|</span>
+        <a href="#skara">Skara</a> <span class="nav-separator">|</span>
+        <a href="#pije">Pije</a> <span class="nav-separator">|</span>
+        <a href="#ekstra">Ekstra</a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="menu-wrapper">
+    <div class="container">
+      
+      <div class="menu-grid">
+
+        <div id="mengjesi" class="menu-card">
+            <div class="card-header">
+                <h3 class="category-title">Mëngjesi</h3>
+            </div>
+            <div class="menu-list-item"><span class="item-name">Omlet Natyral</span><span class="item-dots"></span><span class="item-price">3.00€</span></div>
+            <div class="menu-list-item"><span class="item-name">Omlet me Proshutë</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Omlet me Suxhuk</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Omlet me Djathë</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Llokuma (Ajvar & Lëng)</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Supë Dite</span><span class="item-dots"></span><span class="item-price">2.50€</span></div>
+        </div>
+
+        <div id="sendvice" class="menu-card">
+            <div class="card-header">
+                <h3 class="category-title">Sanduiçë</h3>
+            </div>
+            <div class="sub-category">Në Bukë</div>
+            <div class="menu-list-item"><span class="item-name">Sanduiç Pule</span><span class="item-dots"></span><span class="item-price">3.00€</span></div>
+            <div class="menu-list-item"><span class="item-name">Sanduiç Proshutë</span><span class="item-dots"></span><span class="item-price">3.00€</span></div>
+            <div class="menu-list-item"><span class="item-name">Sanduiç Tuna</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item">
+              <span class="item-name">Sanduiç Dielli <i class="fas fa-camera photo-icon" onclick="openModal('https://images.unsplash.com/photo-1619860860774-1e2e17343432?w=800')"></i></span>
+              <span class="item-dots"></span><span class="item-price">3.50€</span>
+            </div>
+            
+            <div class="sub-category">Në Petë</div>
+            <div class="menu-list-item"><span class="item-name">Sanduiç Pule</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Sanduiç Proshutë</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Sanduiç Tuna</span><span class="item-dots"></span><span class="item-price">4.00€</span></div>
+            <div class="menu-list-item"><span class="item-name">Sanduiç Dielli</span><span class="item-dots"></span><span class="item-price">4.00€</span></div>
+        </div>
+
+        <div id="pogaqe" class="menu-card">
+            <div class="card-header">
+                <h3 class="category-title">Pogaçe</h3>
+            </div>
+            <div class="menu-list-item"><span class="item-name">Pogaçe Pule</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Pogaçe Proshutë</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Pogaçe Suxhuk</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Pogaçe me Lëng</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Pogaçe me Mazë</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item">
+              <span class="item-name">Pogaçe Dielli <i class="fas fa-camera photo-icon" onclick="openModal('https://images.unsplash.com/photo-1574484284002-952d92456975?w=800')"></i></span>
+              <span class="item-dots"></span><span class="item-price">4.00€</span>
+            </div>
+        </div>
+
+        <div id="samun" class="menu-card">
+            <div class="card-header">
+                <h3 class="category-title">Samun</h3>
+            </div>
+            <div class="menu-list-item"><span class="item-name">Samun Pule</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Samun Proshutë</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Samun Suxhuk</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Samun Tuna</span><span class="item-dots"></span><span class="item-price">4.00€</span></div>
+            <div class="menu-list-item"><span class="item-name">Samun Dielli</span><span class="item-dots"></span><span class="item-price">4.00€</span></div>
+        </div>
+
+        <div id="pide" class="menu-card">
+            <div class="card-header">
+                <h3 class="category-title">Pide</h3>
+            </div>
+            <div class="menu-list-item"><span class="item-name">Pide Pule</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Pide Proshutë</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Pide Suxhuk</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Pide Tuna</span><span class="item-dots"></span><span class="item-price">4.00€</span></div>
+            <div class="menu-list-item"><span class="item-name">Pide Dielli</span><span class="item-dots"></span><span class="item-price">4.00€</span></div>
+        </div>
+
+        <div id="pica" class="menu-card">
+            <div class="card-header">
+                <h3 class="category-title">Pica Shtëpie</h3>
+            </div>
+            <div class="pizza-table">
+                <div class="pizza-row pizza-table-header">
+                    <span class="pizza-cell cell-name">Lloji</span>
+                    <span class="pizza-cell cell-header-price">E Mesme</span>
+                    <span class="pizza-cell cell-header-price">E Madhe</span>
+                </div>
+                <div class="pizza-row">
+                    <span class="pizza-cell cell-name">Margarita</span>
+                    <span class="pizza-cell cell-price">4.50€</span>
+                    <span class="pizza-cell cell-price">5.50€</span>
+                </div>
+                <div class="pizza-row">
+                    <span class="pizza-cell cell-name">Proshutë</span>
+                    <span class="pizza-cell cell-price">4.50€</span>
+                    <span class="pizza-cell cell-price">5.50€</span>
+                </div>
+                <div class="pizza-row">
+                    <span class="pizza-cell cell-name">Pikante</span>
+                    <span class="pizza-cell cell-price">4.50€</span>
+                    <span class="pizza-cell cell-price">5.50€</span>
+                </div>
+                <div class="pizza-row">
+                    <span class="pizza-cell cell-name">Funghi</span>
+                    <span class="pizza-cell cell-price">4.50€</span>
+                    <span class="pizza-cell cell-price">5.50€</span>
+                </div>
+                <div class="pizza-row">
+                    <span class="pizza-cell cell-name">
+                      Dielli <i class="fas fa-camera photo-icon" onclick="openModal('https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800')"></i>
+                    </span>
+                    <span class="pizza-cell cell-price">4.50€</span>
+                    <span class="pizza-cell cell-price">5.50€</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="pasta" class="menu-card">
+            <div class="card-header">
+                <h3 class="category-title">Pasta & Rizoto</h3>
+            </div>
+            <div class="menu-list-item"><span class="item-name">Makarona Bolognese</span><span class="item-dots"></span><span class="item-price">4.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Makarona Carbonara</span><span class="item-dots"></span><span class="item-price">4.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Rizoto Pule</span><span class="item-dots"></span><span class="item-price">4.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Rizoto me Perime</span><span class="item-dots"></span><span class="item-price">4.50€</span></div>
+        </div>
+
+        <div id="sallata" class="menu-card">
+            <div class="card-header">
+                <h3 class="category-title">Sallata</h3>
+            </div>
+            <div class="menu-list-item"><span class="item-name">Sallatë Pule</span><span class="item-dots"></span><span class="item-price">4.00€</span></div>
+            <div class="menu-list-item"><span class="item-name">Sallatë Tuna</span><span class="item-dots"></span><span class="item-price">4.00€</span></div>
+            <div class="menu-list-item"><span class="item-name">Sallatë Mixe</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Sallatë Shope</span><span class="item-dots"></span><span class="item-price">3.00€</span></div>
+            <div class="menu-list-item"><span class="item-name">Pomfrit</span><span class="item-dots"></span><span class="item-price">2.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Pomfrit me Djathë</span><span class="item-dots"></span><span class="item-price">3.00€</span></div>
+        </div>
+
+        <div id="skara" class="menu-card">
+            <div class="card-header">
+                <h3 class="category-title">Skara & Dyner</h3>
+            </div>
+            <div class="menu-list-item"><span class="item-name">Mish Viçi Porcion</span><span class="item-dots"></span><span class="item-price">9.00€</span></div>
+            <div class="menu-list-item"><span class="item-name">Mish Viçi 1/2</span><span class="item-dots"></span><span class="item-price">5.00€</span></div>
+            <div class="menu-list-item"><span class="item-name">File Pule Porcion</span><span class="item-dots"></span><span class="item-price">5.00€</span></div>
+            <div class="menu-list-item"><span class="item-name">File Pule 1/2</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Hamburger</span><span class="item-dots"></span><span class="item-price">3.00€</span></div>
+            <div class="menu-list-item"><span class="item-name">Hamburger Dielli</span><span class="item-dots"></span><span class="item-price">4.00€</span></div>
+            <div class="menu-list-item"><span class="item-name">Suxhuk i Shtëpisë</span><span class="item-dots"></span><span class="item-price">3.00€</span></div>
+            <div class="menu-list-item"><span class="item-name">Pleskavicë e Mbushur</span><span class="item-dots"></span><span class="item-price">5.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Banjalluqki Porcion</span><span class="item-dots"></span><span class="item-price">4.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Banjalluqki 1/2</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Dyner në Petë</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Dyner në Bukë</span><span class="item-dots"></span><span class="item-price">3.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Dyner në Pjatë</span><span class="item-dots"></span><span class="item-price">4.00€</span></div>
+        </div>
+
+        <div id="pije" class="menu-card">
+            <div class="card-header">
+                <h3 class="category-title">Pije & Ekstra</h3>
+            </div>
+            
+            <div class="sub-category">Pijet</div>
+            <div class="menu-list-item"><span class="item-name">Makiato e Madhe</span><span class="item-dots"></span><span class="item-price">1.00€</span></div>
+            <div class="menu-list-item"><span class="item-name">Makiato e Vogël</span><span class="item-dots"></span><span class="item-price">0.80€</span></div>
+            <div class="menu-list-item"><span class="item-name">Espresso</span><span class="item-dots"></span><span class="item-price">0.80€</span></div>
+            <div class="menu-list-item"><span class="item-name">Çaj Filter</span><span class="item-dots"></span><span class="item-price">0.80€</span></div>
+            <div class="menu-list-item"><span class="item-name">Coca Cola</span><span class="item-dots"></span><span class="item-price">1.20€</span></div>
+            <div class="menu-list-item"><span class="item-name">Lëng Fructal</span><span class="item-dots"></span><span class="item-price">1.20€</span></div>
+            <div class="menu-list-item"><span class="item-name">Red Bull</span><span class="item-dots"></span><span class="item-price">2.00€</span></div>
+            <div class="menu-list-item"><span class="item-name">Ujë 0.5l</span><span class="item-dots"></span><span class="item-price">0.80€</span></div>
+            <div class="menu-list-item"><span class="item-name">Jogurt</span><span class="item-dots"></span><span class="item-price">0.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Ajran</span><span class="item-dots"></span><span class="item-price">0.50€</span></div>
+            
+            <div class="sub-category">Ekstra</div>
+            <div class="menu-list-item"><span class="item-name">Sos</span><span class="item-dots"></span><span class="item-price">0.80€</span></div>
+            <div class="menu-list-item"><span class="item-name">Spec Copë</span><span class="item-dots"></span><span class="item-price">0.50€</span></div>
+            <div class="menu-list-item"><span class="item-name">Djathë Copë</span><span class="item-dots"></span><span class="item-price">0.50€</span></div>
+        </div>
+
+      </div> 
+    </div> 
+  </div>
+
+  <a href="https://wolt.com/sq/xkx/pristina/restaurant/dielli-grill" target="_blank" class="wolt-floating-btn" id="woltBtn">
+    <i class="fas fa-motorcycle"></i>
+    <span>Porosit ne Wolt</span>
+  </a>
+
+  <section class="map-section">
+    <div class="container">
+        <h3 style="text-align: center; margin-bottom: 20px; font-family: 'Playfair Display', serif; color: var(--dark); font-size: 1.8rem; font-style: italic;">Na Gjeni Këtu</h3>
+        <div class="map-embed">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.6624749492094!2d21.1626802!3d42.6473149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549f80228c5fc7%3A0xf38ee6f2e3760f0!2sDielli%20Grill!5e0!3m2!1sen!2s!4v1766330119724!5m2!1sen!2s" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+        <img src="DielliGrill1.png" alt="Logo Dielli Grill" style="height: 60px; width: auto; margin: 0 auto 15px; filter: brightness(0) invert(1);" onerror="this.style.display='none'">
+        <p style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 20px;">Dielli Grill</p>
+        <p style="margin-bottom: 5px; color: #ccc;">📍 Rr. Fehmi Lladrovci, Prishtinë</p>
+        <p style="margin-bottom: 25px; color: #ccc;">📞 045 145 146</p>
+        <div class="social-icons">
+            <a href="https://facebook.com/dielligrill" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/dielli.grill" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p style="margin-top: 40px; font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
+           © 2026 Copyrights All Rights Reserved Dielli Grill
+        </p>
+    </div>
+  </footer>
+
+  <div class="modal-overlay" id="imageModal" onclick="closeModal(event)">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal(event)"><i class="fas fa-times"></i></button>
+      <img src="" id="modalImg" alt="Foto e ushqimit">
+    </div>
+  </div>
+
+  <script>
+    function openModal(imageSrc) {
+      document.getElementById('modalImg').src = imageSrc;
+      document.getElementById('imageModal').classList.add('active');
+    }
+    
+    function closeModal(e) {
+      // Mbyllet nese shtyp butonin X ose jashte fotos (ne sfondin e erret)
+      if(e.target.id === 'imageModal' || e.target.closest('.close-modal')) {
+        document.getElementById('imageModal').classList.remove('active');
+        // Pasi te mbyllet, e fshijme linqet qe te mos shfaqet fotoja e vjeter kur hap nje te re
+        setTimeout(() => document.getElementById('modalImg').src = '', 300);
+      }
+    }
+  </script>
+
+</body>
+</html>

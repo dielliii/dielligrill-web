@@ -230,6 +230,22 @@
     .cell-price { font-size: 0.95rem; }
     .cell-header-price { font-size: 0.8rem; }
   }
+
+    /* --- STILI I FOOTER-IT --- */
+  .site-footer { background-color: #1a1a1a; color: #fff; padding: 60px 20px 20px; margin-top: 60px; font-family: 'Poppins', sans-serif; }
+  .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+  .footer-logo { color: var(--gold); font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 5px; }
+  .footer-subtitle { font-style: italic; color: #aaa; margin-bottom: 15px; font-size: 0.9rem; }
+  .footer-heading { color: var(--gold); font-size: 1.3rem; margin-bottom: 20px; font-family: 'Playfair Display', serif; }
+  .footer-desc, .footer-contact li { color: #ccc; line-height: 1.6; margin-bottom: 15px; font-size: 0.95rem; }
+  .footer-contact { list-style: none; padding: 0; }
+  .footer-contact a { color: #ccc; text-decoration: none; }
+  .footer-social { display: flex; gap: 15px; }
+  .social-icon { display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; color: #fff; text-decoration: none; transition: 0.3s; font-weight: bold; }
+  .social-icon:hover { background-color: var(--gold); color: #000; border-color: var(--gold); }
+  .footer-bottom { text-align: center; padding-top: 30px; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; color: #777; }
+
+  
 </style>
 </head>
 <body>
@@ -471,46 +487,39 @@
     </div>
   </section>
 
-  <footer id="kontakt">
-  <div class="footer-inner">
-    <!-- Brand -->
-    <div>
-      <div class="footer-brand">Dielli Grill</div>
-      <div class="footer-tagline">Tradita që nga 1991</div>
-      <p style="font-size:.8rem;color:rgba(255,255,255,.45);line-height:1.8">Kuzhinë e ngrohtë, shije autentike dhe një atmosferë familjare që ju pret çdo ditë.</p>
-    </div>
-
-    <!-- Contact -->
-    <div class="footer-col">
-      <h4>Kontakti</h4>
-      <p>📍 Rr. Fehmi Lladrovci<br>Prishtinë, Kosovë</p>
-      <a href="tel:045145146">📞 045 145 146</a>
-      <p style="margin-top:10px;font-size:.75rem;color:rgba(255,255,255,.3)">E Hënë – E Diel<br>06:30 – 19:00</p>
-    </div>
-
-    <!-- Social -->
-    <div class="footer-col">
-      <h4>Na Ndiqni</h4>
-      <p style="margin-bottom:4px">Na gjeni në rrjetet sociale dhe ndani eksperiencën tuaj.</p>
-      <div class="social-row">
-        <!-- Facebook -->
-        <a class="social-icon" href="#" aria-label="Facebook">
-          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        </a>
-        <!-- Instagram -->
-        <a class="social-icon" href="#" aria-label="Instagram">
-          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="#1e1c19" stroke-width="2"/></svg>
-        </a>
-        <!-- TikTok -->
-        <a class="social-icon" href="#" aria-label="TikTok">
-          <svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
-        </a>
+    <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h2 class="footer-logo">Dielli Grill</h2>
+        <p class="footer-subtitle">Tradita që nga 1991</p>
+        <p class="footer-desc">Kuzhinë e ngrohtë, shije autentike dhe një atmosferë familjare që ju pret çdo ditë.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3 class="footer-heading">Kontakti</h3>
+        <ul class="footer-contact">
+          <li>📍 Rr. Fehmi Lladrovci<br>Prishtinë, Kosovë</li>
+          <li>📞 <a href="tel:045145146">045 145 146</a></li>
+          <li>🕒 E Hënë – E Diel <br>06:30 – 19:00</li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3 class="footer-heading">Na Ndiqni</h3>
+        <p class="footer-desc">Gjeni ne në rrjetet sociale dhe ndani eksperiencën tuaj.</p>
+        <div class="footer-social">
+          <a href="#" class="social-icon">Fb</a>
+          <a href="#" class="social-icon">Ig</a>
+          <a href="#" class="social-icon">Tk</a>
+        </div>
       </div>
     </div>
-  </div>
+    
+    <div class="footer-bottom">
+      <p>© 2026 Copyrights All rights reserved - Dielli Group</p>
+    </div>
+  </footer>
 
-  <p class="footer-bottom">© 2026 Copyrights All Rights Reserved &nbsp;·&nbsp; Dielli Group</p>
-</footer>
 
 
 <script>

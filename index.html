@@ -471,44 +471,59 @@
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="container">
-        <img src="DielliGrill1.png" alt="Logo Dielli Grill" style="height: 60px; width: auto; margin: 0 auto 15px; filter: brightness(0) invert(1);" onerror="this.style.display='none'">
-        <p style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 20px;">Dielli Grill</p>
-        <p style="margin-bottom: 5px; color: #ccc;">📍 Rr. Fehmi Lladrovci, Prishtinë</p>
-        <p style="margin-bottom: 25px; color: #ccc;">📞 045 145 146</p>
-        <div class="social-icons">
-            <a href="https://facebook.com/dielligrill" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://instagram.com/dielli.grill" target="_blank"><i class="fab fa-instagram"></i></a>
-        </div>
-        <p style="margin-top: 40px; font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 2px;">
-           © Dielli Grill 2026
-        </p>
+  <footer id="kontakt">
+  <div class="footer-inner">
+    <!-- Brand -->
+    <div>
+      <div class="footer-brand">Dielli Grill</div>
+      <div class="footer-tagline">Tradita që nga 1991</div>
+      <p style="font-size:.8rem;color:rgba(255,255,255,.45);line-height:1.8">Kuzhinë e ngrohtë, shije autentike dhe një atmosferë familjare që ju pret çdo ditë.</p>
     </div>
-  </footer>
 
-  <div class="modal-overlay" id="imageModal" onclick="closeModal(event)">
-    <div class="modal-content">
-      <button class="close-modal" onclick="closeModal(event)"><i class="fas fa-times"></i></button>
-      <img src="" id="modalImg" alt="Foto e ushqimit">
+    <!-- Contact -->
+    <div class="footer-col">
+      <h4>Kontakti</h4>
+      <p>📍 Rr. Fehmi Lladrovci<br>Prishtinë, Kosovë</p>
+      <a href="tel:045145146">📞 045 145 146</a>
+      <p style="margin-top:10px;font-size:.75rem;color:rgba(255,255,255,.3)">E Hënë – E Diel<br>06:30 – 19:00</p>
+    </div>
+
+    <!-- Social -->
+    <div class="footer-col">
+      <h4>Na Ndiqni</h4>
+      <p style="margin-bottom:4px">Na gjeni në rrjetet sociale dhe ndani eksperiencën tuaj.</p>
+      <div class="social-row">
+        <!-- Facebook -->
+        <a class="social-icon" href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <!-- Instagram -->
+        <a class="social-icon" href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="#1e1c19" stroke-width="2"/></svg>
+        </a>
+        <!-- TikTok -->
+        <a class="social-icon" href="#" aria-label="TikTok">
+          <svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 
-  <script>
-    function openModal(imageSrc) {
-      document.getElementById('modalImg').src = imageSrc;
-      document.getElementById('imageModal').classList.add('active');
-    }
-    
-    function closeModal(e) {
-      // Mbyllet nese shtyp butonin X ose jashte fotos (ne sfondin e erret)
-      if(e.target.id === 'imageModal' || e.target.closest('.close-modal')) {
-        document.getElementById('imageModal').classList.remove('active');
-        // Pasi te mbyllet, e fshijme linqet qe te mos shfaqet fotoja e vjeter kur hap nje te re
-        setTimeout(() => document.getElementById('modalImg').src = '', 300);
-      }
-    }
-  </script>
+  <p class="footer-bottom">© 2026 Copyrights All Rights Reserved &nbsp;·&nbsp; Dielli Group</p>
+</footer>
 
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const hero   = document.getElementById('hero');
+  const observer = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) {
+      navbar.classList.add('nav-visible');
+    } else {
+      navbar.classList.remove('nav-visible');
+    }
+  }, { threshold: 0.05 });
+  observer.observe(hero);
+</script>
 </body>
 </html>
